@@ -1,0 +1,25 @@
+.card {
+  @extend %box-shadow-big;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: $color-background;
+}
+.card__image {
+  width: 100%;
+}
+.card__content {
+  width: 100%;
+  padding: 16px 16px 24px;;
+}
+.card__name {
+  @include font($size: 2rem, $height: calc(25 / 20), $weight: 600);
+  margin-bottom: 16px;
+}
+.card__description {
+  margin-bottom: 32px;
+}
+.card__cost {
+  @include font($size: 2.4rem, $height: calc(30 / 24), $weight: 600)
+}
