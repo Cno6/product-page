@@ -49,7 +49,7 @@ export default {
             "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Camera_obscura_2.jpg/1280px-Camera_obscura_2.jpg",
         },
         {
-          name: "Polaroid Cmare",
+          name: "Polaroid Camera",
           description:
             "The tiny analog instant camera that’s portable, wearable, and take-anywhere-able.",
           cost: 500,

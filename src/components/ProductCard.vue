@@ -1,12 +1,15 @@
 <template>
-  <div class="card">
+  <div @mouseenter="isHover = true" @mouseleave="isHover = false" class="card" >
+    <span v-if="isHover" class="card__delete" ></span>
     <img class="card__image" :src="product.imageURL" alt="Polaroid's Camera" />
     <div class="card__content">
       <h2 class="card__name">{{ product.name }}</h2>
       <p class="card__description">
         {{ product.description }}
       </p>
-      <p class="card__cost">{{ Intl.NumberFormat("ru-RU").format(product.cost) }} руб.</p>
+      <p class="card__cost">
+        {{ Intl.NumberFormat("ru-RU").format(product.cost) }} руб.
+      </p>
     </div>
   </div>
 </template>
@@ -17,8 +20,13 @@ export default {
   props: {
     product: {
       type: Object,
-      required: true
+      required: true,
     },
+  },
+  data() {
+    return {
+      isHover: false,
+    };
   },
 };
 </script>
@@ -36,19 +44,18 @@ export default {
   background-color: $color-background;
   &:hover {
     cursor: pointer;
-    &:before {
-      content: "";
-      background: url("@/assets/icons/delete.svg") no-repeat center;
-      position: absolute;
-      top: -8px;
-      right: -8px;
-      display: block;
-      width: 32px;
-      height: 32px;
-      background-color: $color-additional;
-      border-radius: 10px;
-    }
   }
+}
+.card__delete {
+  background: url("@/assets/icons/delete.svg") no-repeat center;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  display: block;
+  width: 32px;
+  height: 32px;
+  background-color: $color-additional;
+  border-radius: 10px;
 }
 .card__image {
   width: 100%;
