@@ -1,11 +1,10 @@
 <template>
   <div class="products-list">
     <div class="products-list__buttons">
-      <select class="select" name="productFilter" id="products-list-filter">
-        <option value="default" selected>По умолчанию</option>
-        <option value="ascending">По возрастанию цены</option>
-        <option value="descending">По убыванию цены</option>
-      </select>
+      <base-select
+        :options="filterOptions"
+        :select="filterSelect"
+      ></base-select>
     </div>
     <div class="products-list__cards">
       <product-card
@@ -49,14 +48,31 @@ export default {
           imageURL:
             "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Camera_obscura_2.jpg/1280px-Camera_obscura_2.jpg",
         },
+        {
+          name: "Polaroid Cmare",
+          description:
+            "The tiny analog instant camera that’s portable, wearable, and take-anywhere-able.",
+          cost: 500,
+          imageURL:
+            "https://i.pinimg.com/736x/be/dd/2c/bedd2cc3ab100935f1cd3d18ea053879--polaroid-one-step-vintage-cameras.jpg",
+        },
       ],
+      filterOptions: [
+        { text: "По умолчанию", value: "default", selected: true },
+        { text: "По возрастанию цены", value: "ascending", selected: false },
+        { text: "По убыванию цены", value: "descending", selected: false },
+      ],
+      filterSelect: {
+        name: "productFilter",
+        id: "products-list-filter",
+      },
     };
   },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "../scss/abstract/_abstract.scss";
+@import "@/scss/abstract/_abstract.scss";
 
 .products-list {
   width: 100%;
@@ -68,7 +84,7 @@ export default {
 .products-list__cards {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: $gap;
   padding-top: 8px;
   > * {
