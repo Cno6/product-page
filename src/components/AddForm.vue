@@ -2,54 +2,10 @@
   <div class="add-form">
     <h1 class="add-form__header">Добавление товара</h1>
     <form class="form add-form__form">
-      <label class="form__label form__label_required" for="product-name"
-        >Наименование товара</label
-      >
-      <input
-        class="form__input"
-        type="text"
-        id="product-name"
-        name="name"
-        placeholder="Введите наименование товара"
-        required
-      />
-
-      <label class="form__label" for="product-description"
-        >Описание товара</label
-      >
-      <textarea
-        class="form__text-area"
-        name="description"
-        id="product-description"
-        cols="30"
-        rows="10"
-        placeholder="Введите описание товара"
-      ></textarea>
-
-      <label class="form__label form__label_required" for="product-image"
-        >Ссылка на изображение товара</label
-      >
-      <input
-        class="form__input"
-        type="url"
-        id="product-image"
-        name="image"
-        placeholder="Введите ссылку"
-        required
-      />
-
-      <label class="form__label form__label_required" for="product-image"
-        >Цена товара</label
-      >
-      <input
-        class="form__input"
-        type="number"
-        id="product-image"
-        name="image"
-        placeholder="Введите цену"
-        required
-      />
-
+      <base-input :input="formInputs.name"></base-input>
+      <base-textarea :textArea="formInputs.description"></base-textarea>
+      <base-input :input="formInputs.image"></base-input>
+      <base-input :input="formInputs.cost"></base-input>
       <base-button class="button" type="button" :disabled="true">
         Добавить товар
       </base-button>
@@ -60,6 +16,56 @@
 <script>
 export default {
   name: "add-form",
+  data() {
+    return {
+      formInputs: {
+        name: {
+          type: "text",
+          id: "product-name",
+          name: "name",
+          placeholder: "Введите наименование товара",
+          required: true,
+          label: {
+            placeholder: "Наименование товара",
+            for: "product-name",
+          },
+        },
+        image: {
+          type: "url",
+          id: "product-image",
+          name: "image",
+          placeholder: "Введите ссылку",
+          required: true,
+          label: {
+            placeholder: "Ссылка на изображение товара",
+            for: "product-image",
+          },
+        },
+        cost: {
+          type: "number",
+          id: "product-cost",
+          name: "cost",
+          placeholder: "Введите цену",
+          required: true,
+          label: {
+            placeholder: "Цена товара",
+            for: "product-cost",
+          },
+        },
+        description: {
+          type: "textArea",
+          id: "product-description",
+          name: "description",
+          placeholder: "Введите описание товара",
+          required: false,
+          label: {
+            placeholder: "Описание товара",
+            for: "product-description",
+          },
+        },
+      }
+    };
+  },
 };
 </script>
 
@@ -114,8 +120,6 @@ export default {
   &::placeholder {
     color: $color-placeholders;
   }
-}
-.form__input {
 }
 .form__text-area {
   height: 108px;
