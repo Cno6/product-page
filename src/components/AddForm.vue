@@ -2,15 +2,30 @@
   <div class="add-form">
     <h1 class="add-form__header">Добавление товара</h1>
     <form class="form add-form__form">
-      <base-input v-model="value" @update="getProductData" :input="formInputs.name"></base-input>
-      <base-textarea v-model="value" @update="getProductData" :textArea="formInputs.description"></base-textarea>
-      <base-input v-model="value" @update="getProductData" :input="formInputs.image"></base-input>
-      <base-input v-model="value" @update="getProductData" :input="formInputs.cost"></base-input>
+      <base-input
+        v-model="value"
+        @update="getProductData"
+        :input="formInputs.name"
+      ></base-input>
+      <base-textarea
+        v-model="value"
+        @update="getProductData"
+        :textArea="formInputs.description"
+      ></base-textarea>
+      <base-input
+        v-model="value"
+        @update="getProductData"
+        :input="formInputs.image"
+      ></base-input>
+      <base-input
+        v-model="value"
+        @update="getProductData"
+        :input="formInputs.cost"
+      ></base-input>
       <base-button
-        @click="addProduct"
+        @click.prevent="updateProduct"
         class="button"
-        type="button"
-        :disabled="true"
+        :disabled="false"
       >
         Добавить товар
       </base-button>
@@ -21,8 +36,10 @@
 <script>
 export default {
   name: "add-form",
+  emits: ["update:product"],
   data() {
     return {
+      value: null,
       formInputs: {
         name: {
           type: "text",
@@ -69,7 +86,7 @@ export default {
           },
         },
       },
-      product: {
+      newProduct: {
         name: "",
         description: "",
         cost: 0,
@@ -79,7 +96,7 @@ export default {
   },
   methods: {
     getProductData(value, inputName) {
-      this.product[inputName] = value;
+      this.newProduct[inputName] = value;
       // this.product = {
       //   name: '',
       //   description: '',
@@ -93,6 +110,15 @@ export default {
       //   imageURL: this.product.imageURL
       // }
     },
+    updateProduct() {
+      this.$emit("update:product", this.newProduct)
+      this.newProduct = {
+        name: "",
+        description: "",
+        cost: 0,
+        imageURL: "",
+      }
+    }
   },
 };
 </script>
