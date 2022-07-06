@@ -47,6 +47,10 @@ export default {
   margin: auto;
   background-color: $color-background;
   display: flex;
+  justify-content: center;
   gap: $gap;
+  @include media-mobile-big {
+    gap: $gap-small;
+  }
 }
 </style>

@@ -107,5 +107,12 @@ export default {
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   padding-top: 8px;
+  @include media-laptop {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include media-mobile-big {
+    grid-template-columns: repeat(1, 1fr);
+    gap: $gap-small;
+  }
 }
 </style>
