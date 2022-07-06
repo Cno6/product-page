@@ -85,10 +85,10 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: $gap;
   padding-top: 8px;
   > * {
     flex-basis: 32%;
+    margin-bottom: 16px;
   }
 }
 </style>

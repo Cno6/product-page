@@ -9,13 +9,13 @@
   </label>
   <textarea
     v-bind="$attrs"
-    @input="sendData"
     class="form__text-area"
     :name="textArea.name"
     :id="textArea.id"
     :placeholder="textArea.placeholder"
     :required="textArea.required"
     :value="modelValue"
+    @input="sendData"
   ></textarea>
 </template>
 
@@ -32,14 +32,12 @@ export default {
   },
   data() {
     return {
-      value: "",
       name: this.$props.textArea.name,
     };
   },
   methods: {
-    sendData(e) {
-      this.value = e.target.value;
-      this.$emit("update", e.target.value, this.name);
+    sendData(event) {
+      this.$emit("update:modelValue", event.target.value);
     },
   },
 };

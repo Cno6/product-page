@@ -3,22 +3,21 @@
     <h1 class="add-form__header">Добавление товара</h1>
     <form class="form add-form__form">
       <base-input
-        v-model="value"
-        @update="getProductData"
+        v-model="newProduct.name"
         :input="formInputs.name"
       ></base-input>
       <base-textarea
-        v-model="value"
+        v-model="newProduct.description"
         @update="getProductData"
         :textArea="formInputs.description"
       ></base-textarea>
       <base-input
-        v-model="value"
+        v-model="newProduct.imageURL"
         @update="getProductData"
         :input="formInputs.image"
       ></base-input>
       <base-input
-        v-model="value"
+        v-model="newProduct.cost"
         @update="getProductData"
         :input="formInputs.cost"
       ></base-input>
@@ -39,7 +38,6 @@ export default {
   emits: ["update:product"],
   data() {
     return {
-      value: null,
       formInputs: {
         name: {
           type: "text",
@@ -89,7 +87,7 @@ export default {
       newProduct: {
         name: "",
         description: "",
-        cost: 0,
+        cost: "",
         imageURL: "",
       },
     };
@@ -97,28 +95,16 @@ export default {
   methods: {
     getProductData(value, inputName) {
       this.newProduct[inputName] = value;
-      // this.product = {
-      //   name: '',
-      //   description: '',
-      //   cost: 0,
-      //   imageURL: ''
-      // }
-      // const newProduct = {
-      //   name: this.product.name,
-      //   description: this.product.description,
-      //   cost: this.product.cost,
-      //   imageURL: this.product.imageURL
-      // }
     },
     updateProduct() {
-      this.$emit("update:product", this.newProduct)
+      this.$emit("update:product", this.newProduct);
       this.newProduct = {
         name: "",
         description: "",
-        cost: 0,
+        cost: "",
         imageURL: "",
-      }
-    }
+      };
+    },
   },
 };
 </script>

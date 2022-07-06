@@ -9,21 +9,22 @@
   </label>
   <input
     v-bind="$attrs"
-    @input="sendData"
     class="form__input"
     :type="input.type"
     :id="input.id"
     :name="input.name"
     :placeholder="input.placeholder"
     :required="input.required"
+    autocomplete="off"
     :value="modelValue"
+    @input="sendData"
   />
 </template>
 
 <script>
 export default {
   name: "base-input",
-  emits: ["update"],
+  emits: ["update:modelValue"],
   props: {
     modelValue: String,
     input: {
@@ -33,14 +34,12 @@ export default {
   },
   data() {
     return {
-      value: "",
       name: this.$props.input.name,
     };
   },
   methods: {
-    sendData(e) {
-      this.value = e.target.value;
-      this.$emit("update", e.target.value, this.name);
+    sendData(event) {
+      this.$emit("update:modelValue", event.target.value);
     },
   },
 };
