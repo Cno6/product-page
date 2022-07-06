@@ -1,7 +1,7 @@
 <template>
   <div @mouseenter="isHover = true" @mouseleave="isHover = false" class="card">
     <span @click="deleteCard" v-if="isHover" class="card__delete"></span>
-    <img class="card__image" :src="product.imageURL" alt="Polaroid's Camera" />
+    <img class="card__image" :src="product.imageURL" :alt="product.name" />
     <div class="card__content">
       <h2 class="card__name">{{ product.name }}</h2>
       <p class="card__description">

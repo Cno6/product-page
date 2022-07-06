@@ -8,17 +8,14 @@
       ></base-input>
       <base-textarea
         v-model="newProduct.description"
-        @update="getProductData"
         :textArea="formInputs.description"
       ></base-textarea>
       <base-input
         v-model="newProduct.imageURL"
-        @update="getProductData"
         :input="formInputs.image"
       ></base-input>
       <base-input
         v-model="newProduct.cost"
-        @update="getProductData"
         :input="formInputs.cost"
       ></base-input>
       <base-button
@@ -94,18 +91,21 @@ export default {
     };
   },
   methods: {
-    getProductData(value, inputName) {
-      this.newProduct[inputName] = value;
-    },
     updateProduct() {
-      this.$emit("update:product", this.newProduct);
-      this.newProduct = {
-        id: new Date.now(),
-        name: "",
-        description: "",
-        cost: "",
-        imageURL: "",
-      };
+      if (
+        !!this.newProduct.name &&
+        !!this.newProduct.imageURL &&
+        !!this.newProduct.cost
+      ) {
+        this.$emit("update:product", this.newProduct);
+        this.newProduct = {
+          id: new Date.now(),
+          name: "",
+          description: "",
+          cost: "",
+          imageURL: "",
+        };
+      }
     },
   },
 };
