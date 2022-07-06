@@ -1,5 +1,5 @@
 <template>
-  <button class="button" type="button">
+  <button class="button">
     <slot></slot>
   </button>
 </template>
@@ -24,7 +24,19 @@ export default {
   padding: 10px 16px 11px;
   border: none;
   border-radius: 10px;
+  background-color: $color-button-active;
+  color: #fff;
+  transition: background-color .3s ease;
+  &:hover {
+    cursor: pointer;
+    background-color: $color-button-hover;
+  }
+  &:active {
+    // ТЕСТ
+    background-color: red;
+  }
   &[disabled] {
+    color: $color-placeholders;
     background-color: $color-button-disable;
   }
 }

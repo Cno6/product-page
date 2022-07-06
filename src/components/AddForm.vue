@@ -2,11 +2,30 @@
   <div class="add-form">
     <h1 class="add-form__header">Добавление товара</h1>
     <form class="form add-form__form">
-      <base-input :input="formInputs.name"></base-input>
-      <base-textarea :textArea="formInputs.description"></base-textarea>
-      <base-input :input="formInputs.image"></base-input>
-      <base-input :input="formInputs.cost"></base-input>
-      <base-button class="button" type="button" :disabled="true">
+      <base-input
+        v-model="newProduct.name"
+        :input="formInputs.name"
+      ></base-input>
+      <base-textarea
+        v-model="newProduct.description"
+        @update="getProductData"
+        :textArea="formInputs.description"
+      ></base-textarea>
+      <base-input
+        v-model="newProduct.imageURL"
+        @update="getProductData"
+        :input="formInputs.image"
+      ></base-input>
+      <base-input
+        v-model="newProduct.cost"
+        @update="getProductData"
+        :input="formInputs.cost"
+      ></base-input>
+      <base-button
+        @click.prevent="updateProduct"
+        class="button"
+        :disabled="false"
+      >
         Добавить товар
       </base-button>
     </form>
@@ -16,6 +35,7 @@
 <script>
 export default {
   name: "add-form",
+  emits: ["update:product"],
   data() {
     return {
       formInputs: {
@@ -33,7 +53,7 @@ export default {
         image: {
           type: "url",
           id: "product-image",
-          name: "image",
+          name: "imageURL",
           placeholder: "Введите ссылку",
           required: true,
           label: {
@@ -63,8 +83,28 @@ export default {
             for: "product-description",
           },
         },
-      }
+      },
+      newProduct: {
+        name: "",
+        description: "",
+        cost: "",
+        imageURL: "",
+      },
     };
+  },
+  methods: {
+    getProductData(value, inputName) {
+      this.newProduct[inputName] = value;
+    },
+    updateProduct() {
+      this.$emit("update:product", this.newProduct);
+      this.newProduct = {
+        name: "",
+        description: "",
+        cost: "",
+        imageURL: "",
+      };
+    },
   },
 };
 </script>

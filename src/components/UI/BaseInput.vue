@@ -8,22 +8,38 @@
     >{{ input.label.placeholder }}
   </label>
   <input
+    v-bind="$attrs"
     class="form__input"
     :type="input.type"
     :id="input.id"
     :name="input.name"
     :placeholder="input.placeholder"
     :required="input.required"
+    autocomplete="off"
+    :value="modelValue"
+    @input="sendData"
   />
 </template>
 
 <script>
 export default {
   name: "base-input",
+  emits: ["update:modelValue"],
   props: {
+    modelValue: String,
     input: {
       type: Object,
       required: true,
+    },
+  },
+  data() {
+    return {
+      name: this.$props.input.name,
+    };
+  },
+  methods: {
+    sendData(event) {
+      this.$emit("update:modelValue", event.target.value);
     },
   },
 };
