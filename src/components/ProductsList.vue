@@ -75,9 +75,10 @@ export default {
 @import "@/scss/abstract/_abstract.scss";
 
 .products-list {
-  width: 100%;
+  max-width: 100%;
 }
 .products-list__buttons {
+  width: 100%;
   text-align: right;
   margin-bottom: 8px;
 }
@@ -85,10 +86,10 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: $gap;
   padding-top: 8px;
   > * {
     flex-basis: 32%;
+    margin-bottom: 16px;
   }
 }
 </style>
