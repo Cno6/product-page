@@ -1,6 +1,6 @@
 <template>
   <add-form @update:product="addProduct"></add-form>
-  <products-list></products-list>
+  <products-list :product="product"></products-list>
 </template>
 
 <script>

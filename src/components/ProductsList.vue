@@ -21,6 +21,11 @@ import ProductCard from "./ProductCard.vue";
 export default {
   name: "products-list",
   components: { ProductCard },
+  props: {
+    product: {
+      type: Object
+    }
+  },
   data() {
     return {
       productsList: [
@@ -68,6 +73,11 @@ export default {
       },
     };
   },
+  watch: {
+    product(newValue) {
+      this.productsList.push(newValue)
+    }
+  }
 };
 </script>
 
