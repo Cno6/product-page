@@ -2,11 +2,16 @@
   <div class="add-form">
     <h1 class="add-form__header">Добавление товара</h1>
     <form class="form add-form__form">
-      <base-input :input="formInputs.name"></base-input>
-      <base-textarea :textArea="formInputs.description"></base-textarea>
-      <base-input :input="formInputs.image"></base-input>
-      <base-input :input="formInputs.cost"></base-input>
-      <base-button class="button" type="button" :disabled="true">
+      <base-input v-model="value" @update="getProductData" :input="formInputs.name"></base-input>
+      <base-textarea v-model="value" @update="getProductData" :textArea="formInputs.description"></base-textarea>
+      <base-input v-model="value" @update="getProductData" :input="formInputs.image"></base-input>
+      <base-input v-model="value" @update="getProductData" :input="formInputs.cost"></base-input>
+      <base-button
+        @click="addProduct"
+        class="button"
+        type="button"
+        :disabled="true"
+      >
         Добавить товар
       </base-button>
     </form>
@@ -33,7 +38,7 @@ export default {
         image: {
           type: "url",
           id: "product-image",
-          name: "image",
+          name: "imageURL",
           placeholder: "Введите ссылку",
           required: true,
           label: {
@@ -63,8 +68,31 @@ export default {
             for: "product-description",
           },
         },
-      }
+      },
+      product: {
+        name: "",
+        description: "",
+        cost: 0,
+        imageURL: "",
+      },
     };
+  },
+  methods: {
+    getProductData(value, inputName) {
+      this.product[inputName] = value;
+      // this.product = {
+      //   name: '',
+      //   description: '',
+      //   cost: 0,
+      //   imageURL: ''
+      // }
+      // const newProduct = {
+      //   name: this.product.name,
+      //   description: this.product.description,
+      //   cost: this.product.cost,
+      //   imageURL: this.product.imageURL
+      // }
+    },
   },
 };
 </script>

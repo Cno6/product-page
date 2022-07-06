@@ -8,21 +8,38 @@
     >{{ textArea.label.placeholder }}
   </label>
   <textarea
+    v-bind="$attrs"
+    @input="sendData"
     class="form__text-area"
     :name="textArea.name"
     :id="textArea.id"
     :placeholder="textArea.placeholder"
     :required="textArea.required"
+    :value="modelValue"
   ></textarea>
 </template>
 
 <script>
 export default {
   name: "base-textarea",
+  emits: ["update"],
   props: {
+    modelValue: String,
     textArea: {
       type: Object,
       required: true,
+    },
+  },
+  data() {
+    return {
+      value: "",
+      name: this.$props.textArea.name,
+    };
+  },
+  methods: {
+    sendData(e) {
+      this.value = e.target.value;
+      this.$emit("update", e.target.value, this.name);
     },
   },
 };
