@@ -8,8 +8,9 @@
     </div>
     <div class="products-list__cards">
       <product-card
+        @remove="removeProduct"
         v-for="product in productsList"
-        :key="product.name"
+        :key="product.id"
         :product="product"
       ></product-card>
     </div>
@@ -30,6 +31,7 @@ export default {
     return {
       productsList: [
         {
+          id: 0,
           name: "Nikon D810",
           description:
             "Создайте новый шедевр с помощью безукоризненной фотокамеры Nikon D810. Эта универсальная фотокамера с разрешением 36,3 млн пикселей позволит снять все — от мельчайших текстур до быстро движущихся объектов.",
@@ -38,6 +40,7 @@ export default {
             "https://cdn.nikoneurope.com/imported/images/web/EU/products/digital-cameras/dslr/hero_ppdd_updated/nikon_dslr_d810_black_front--original.png",
         },
         {
+          id: 1,
           name: "black and silver vintage camera",
           description:
             "Создайте новый шедевр с помощью безукоризненной фотокамеры Nikon D810. Эта универсальная фотокамера с разрешением 36,3 млн пикселей позволит снять все — от мельчайших текстур до быстро движущихся объектов.",
@@ -46,6 +49,7 @@ export default {
             "https://images.unsplash.com/photo-1495121553079-4c61bcce1894?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=381&q=80",
         },
         {
+          id: 2,
           name: "Камера-обскура",
           description:
             "простейший вид устройства, позволяющего получать оптическое изображение объектов. Представляет собой светонепроницаемый ящик с отверстием в одной из стенок и экраном (матовым стеклом или тонкой белой бумагой) на противоположной стене. Лучи света, проходя сквозь малое отверстие (диаметр которого зависит от «фокусного расстояния» камеры, приблизительно 0,1—5 мм), создают перевёрнутое изображение на экране.",
@@ -54,6 +58,7 @@ export default {
             "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Camera_obscura_2.jpg/1280px-Camera_obscura_2.jpg",
         },
         {
+          id: 3,
           name: "Polaroid Camera",
           description:
             "The tiny analog instant camera that’s portable, wearable, and take-anywhere-able.",
@@ -72,6 +77,11 @@ export default {
         id: "products-list-filter",
       },
     };
+  },
+  methods: {
+    removeProduct(product) {
+      this.productsList = this.productsList.filter(p => p.id !== product.id);
+    }
   },
   watch: {
     product(newValue) {

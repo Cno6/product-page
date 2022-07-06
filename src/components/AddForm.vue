@@ -85,6 +85,7 @@ export default {
         },
       },
       newProduct: {
+        id: "",
         name: "",
         description: "",
         cost: "",
@@ -99,6 +100,7 @@ export default {
     updateProduct() {
       this.$emit("update:product", this.newProduct);
       this.newProduct = {
+        id: new Date.now(),
         name: "",
         description: "",
         cost: "",

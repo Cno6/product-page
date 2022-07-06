@@ -1,6 +1,6 @@
 <template>
   <div @mouseenter="isHover = true" @mouseleave="isHover = false" class="card">
-    <span v-if="isHover" class="card__delete"></span>
+    <span @click="deleteCard" v-if="isHover" class="card__delete"></span>
     <img class="card__image" :src="product.imageURL" alt="Polaroid's Camera" />
     <div class="card__content">
       <h2 class="card__name">{{ product.name }}</h2>
@@ -27,6 +27,11 @@ export default {
     return {
       isHover: false,
     };
+  },
+  methods: {
+    deleteCard() {
+      this.$emit('remove', this.product)
+    },
   },
 };
 </script>
