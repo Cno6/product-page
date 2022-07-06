@@ -83,13 +83,9 @@ export default {
   margin-bottom: 8px;
 }
 .products-list__cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
   padding-top: 8px;
-  > * {
-    flex-basis: 32%;
-    margin-bottom: 16px;
-  }
 }
 </style>

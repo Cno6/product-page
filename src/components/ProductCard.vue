@@ -1,6 +1,6 @@
 <template>
-  <div @mouseenter="isHover = true" @mouseleave="isHover = false" class="card" >
-    <span v-if="isHover" class="card__delete" ></span>
+  <div @mouseenter="isHover = true" @mouseleave="isHover = false" class="card">
+    <span v-if="isHover" class="card__delete"></span>
     <img class="card__image" :src="product.imageURL" alt="Polaroid's Camera" />
     <div class="card__content">
       <h2 class="card__name">{{ product.name }}</h2>
@@ -74,6 +74,10 @@ export default {
 .card__name {
   @include font($size: 2rem, $height: calc(25 / 20), $weight: 600);
   margin-bottom: 16px;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .card__description {
   margin-bottom: 32px;
@@ -81,6 +85,7 @@ export default {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  flex-grow: 1;
 }
 .card__cost {
   @include font($size: 2.4rem, $height: calc(30 / 24), $weight: 600);
