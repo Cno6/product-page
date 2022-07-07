@@ -21,7 +21,7 @@
       <base-button
         @click.prevent="updateProduct"
         class="button"
-        :disabled="false"
+        :disabled="isDisable"
       >
         Добавить товар
       </base-button>
@@ -88,24 +88,32 @@ export default {
         cost: "",
         imageURL: "",
       },
+      isDisable: true
     };
   },
   methods: {
     updateProduct() {
-      if (
-        !!this.newProduct.name &&
-        !!this.newProduct.imageURL &&
-        !!this.newProduct.cost
-      ) {
-        this.$emit("update:product", this.newProduct);
-        this.newProduct = {
-          id: new Date.now(),
-          name: "",
-          description: "",
-          cost: "",
-          imageURL: "",
-        };
-      }
+      this.$emit("update:product", this.newProduct);
+      this.newProduct = {
+        id: Date.now(),
+        name: "",
+        description: "",
+        cost: "",
+        imageURL: "",
+      };
+    },
+  },
+  watch: {
+    newProduct: {
+      handler(newValue) {
+        console.log(newValue);
+        if (!!newValue.name && !!newValue.cost && !!newValue.imageURL) {
+          this.isDisable = false
+        } else { 
+          this.isDisable = true
+        }
+      },
+      deep: true,
     },
   },
 };
