@@ -2,6 +2,7 @@
   <div class="products-list">
     <div class="products-list__buttons">
       <base-select
+        v-model="selectedFilter"
         :options="filterOptions"
         :select="filterSelect"
       ></base-select>
@@ -9,7 +10,7 @@
     <div class="products-list__cards">
       <product-card
         @remove="removeProduct"
-        v-for="product in productsList"
+        v-for="product in filtredProducts"
         :key="product.id"
         :product="product"
       ></product-card>
@@ -24,8 +25,8 @@ export default {
   components: { ProductCard },
   props: {
     product: {
-      type: Object
-    }
+      type: Object,
+    },
   },
   data() {
     return {
@@ -68,7 +69,7 @@ export default {
         },
       ],
       filterOptions: [
-        { text: "По умолчанию", value: "default", selected: true },
+        { text: "По наименованию", value: "byName", selected: true },
         { text: "По возрастанию цены", value: "ascending", selected: false },
         { text: "По убыванию цены", value: "descending", selected: false },
       ],
@@ -76,18 +77,38 @@ export default {
         name: "productFilter",
         id: "products-list-filter",
       },
+      selectedFilter: "byName",
     };
   },
   methods: {
     removeProduct(product) {
-      this.productsList = this.productsList.filter(p => p.id !== product.id);
-    }
+      this.productsList = this.productsList.filter((p) => p.id !== product.id);
+    },
   },
   watch: {
     product(newValue) {
-      this.productsList.push(newValue)
-    }
-  }
+      this.productsList.push(newValue);
+    },
+  },
+  computed: {
+    filtredProducts() {
+      if (this.selectedFilter === "byName") {
+        return [...this.productsList].sort((prod1, prod2) =>
+          prod1.name.localeCompare(prod2.name)
+        );
+      }
+      if (this.selectedFilter === "ascending") {
+        return [...this.productsList].sort(
+          (prod1, prod2) => prod1.cost - prod2.cost
+        );
+      }
+      if (this.selectedFilter === "descending") {
+        return [...this.productsList].sort(
+          (prod1, prod2) => prod2.cost - prod1.cost
+        );
+      }
+    },
+  },
 };
 </script>
 
