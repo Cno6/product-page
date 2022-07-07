@@ -16,6 +16,7 @@ export default {
   data() {
     return {
       product: {
+        id: "",
         name: "",
         description: "",
         cost: 0,
@@ -26,6 +27,7 @@ export default {
   methods: {
     addProduct(newProduct) {
       this.product = {
+        id: newProduct.id,
         name: newProduct.name,
         description: newProduct.description,
         cost: newProduct.cost,

@@ -106,7 +106,6 @@ export default {
   watch: {
     newProduct: {
       handler(newValue) {
-        console.log(newValue);
         if (!!newValue.name && !!newValue.cost && !!newValue.imageURL) {
           this.isDisable = false
         } else { 

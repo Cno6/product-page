@@ -87,6 +87,7 @@ export default {
   },
   watch: {
     product(newValue) {
+      console.log(newValue);
       this.productsList.push(newValue);
     },
   },
