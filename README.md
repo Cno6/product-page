@@ -1,4 +1,8 @@
-# idaproject-test
+# IDAProject Test Task
+
+![Preview](https://i.imgur.com/QOVRblP.png)
+
+*Node Version*: 16.13.2
 
 ## Project setup
 ```
@@ -14,6 +18,3 @@ npm run serve
 ```
 npm run build
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
