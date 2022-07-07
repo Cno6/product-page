@@ -122,10 +122,16 @@ export default {
 <style scoped lang="scss">
 @import "../scss/abstract/_abstract.scss";
 .add-form {
+  @include media-mobile-big {
+    display: none;
+  }
 }
 .add-form__header {
   @include font($size: 2.8rem, $height: calc(35 / 28), $weight: 600);
   margin-bottom: 16px;
+  @include media-tablet {
+     font-size: 2.2rem
+  }
 }
 .add-form__form {
   @extend %box-shadow-big;
@@ -137,6 +143,12 @@ export default {
   flex-direction: column;
   > :last-child {
     margin-top: 8px;
+  }
+  @include media-laptop {
+    max-width: 280px;
+  }
+  @include media-tablet {
+    max-width: 240px;
   }
 }
 

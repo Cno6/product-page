@@ -7,6 +7,9 @@ $color-button-active: #7BAE73;
 $color-button-hover: #86c57d;
 $color-button-disable: #EEEEEE;
 
+$gap: 20px;
+$gap-small: 12px;
+
 %font-primary {
   font-family: 'Source Sans Pro', sans-serif;
 }
@@ -27,4 +30,14 @@ $color-button-disable: #EEEEEE;
   letter-spacing: $spacing;
 }
 
-$gap: 20px;
+@mixin media-laptop {
+  @media (max-width: 1061px) { @content; }
+}
+
+@mixin media-tablet {
+  @media (max-width: 769px) { @content; }
+}
+
+@mixin media-mobile-big {
+  @media (max-width: 662px) { @content; }
+}
