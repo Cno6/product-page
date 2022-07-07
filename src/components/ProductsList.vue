@@ -8,12 +8,14 @@
       ></base-select>
     </div>
     <div class="products-list__cards">
-      <product-card
-        @remove="removeProduct"
-        v-for="product in filtredProducts"
-        :key="product.id"
-        :product="product"
-      ></product-card>
+      <transition-group name="productsList">
+        <product-card
+          @remove="removeProduct"
+          v-for="product in filtredProducts"
+          :key="product.id"
+          :product="product"
+        ></product-card>
+      </transition-group>
     </div>
   </div>
 </template>
@@ -136,5 +138,24 @@ export default {
     grid-template-columns: repeat(1, 1fr);
     gap: $gap-small;
   }
+}
+.productsList-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+.productsList-enter-active,
+.productsList-leave-active {
+  transition: all .5s ease;
+}
+.productsList-enter-from,
+.productsList-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+  @include media-mobile-big {
+    transform: translateX(100vw);
+  }
+}
+.productsList-move {
+  transition: transform 0.5s ease;
 }
 </style>
