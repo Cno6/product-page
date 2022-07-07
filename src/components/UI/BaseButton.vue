@@ -32,10 +32,10 @@ export default {
     background-color: $color-button-hover;
   }
   &:active {
-    // ТЕСТ
-    background-color: red;
+    background-color: $color-additional;
   }
   &[disabled] {
+    cursor: default;
     color: $color-placeholders;
     background-color: $color-button-disable;
   }
