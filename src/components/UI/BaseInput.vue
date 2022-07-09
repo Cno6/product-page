@@ -48,6 +48,22 @@ export default {
 <style lang="scss" scoped>
 @import "@/scss/abstract/_abstract.scss";
 
+.form__label {
+  position: relative;
+  @include font($size: 1rem, $height: calc(13 / 10), $spacing: -0.02em);
+  margin-bottom: 4px;
+  &_required::after {
+    position: absolute;
+    top: 0;
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    background-color: $color-additional;
+    border-radius: 50%;
+  }
+}
+
 .form__input {
   @extend %font-primary;
   @extend %box-shadow-small;
